@@ -1,0 +1,12 @@
+services:
+  desktop:
+    image: dorowu/ubuntu-desktop-lxde-vnc
+    container_name: novnc-google-desktop
+    restart: unless-stopped
+    environment:
+      VNC_PASSWORD: ${VNC_PASSWORD:?Set VNC_PASSWORD in .env}
+      RESOLUTION: 1440x900
+    ports:
+      # Local-only binding for a safe prototype. Use a reverse proxy for remote access.
+      - "127.0.0.1:6080:80"
+    shm_size: "1gb"
